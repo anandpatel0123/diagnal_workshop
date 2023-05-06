@@ -72,8 +72,9 @@ export default class App extends Lightning.Component {
         },
         direction: "row",
         type: List,
+
         smooth: {
-          scrollTransition: { duration: 0.4 },
+          scrollTransition: { duration: 0.5 },
         },
         requestThreshold: 3,
         enableRequests: true,
