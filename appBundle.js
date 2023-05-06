@@ -3,7 +3,7 @@
  * SDK version: 5.3.2
  * CLI version: 2.11.0
  * 
- * Generated: Sat, 06 May 2023 12:36:27 GMT
+ * Generated: Sat, 06 May 2023 12:57:55 GMT
  */
 
 var APP_com_domain_app_diagnalworkshop = (function () {
@@ -9063,18 +9063,28 @@ var APP_com_domain_app_diagnalworkshop = (function () {
         w: w => w,
         h: h => h,
         flex: {
-          direction: 'row',
-          justifyContent: 'flex-start',
-          alignItems: 'center'
+          direction: "row",
+          justifyContent: "flex-start",
+          alignItems: "center"
         },
         BackgroundBody: {
+          transitions: {
+            w: {
+              duration: 0.6,
+              timingFunction: "cubic-bezier(0.20, 1.00, 0.80, 1.00)"
+            },
+            h: {
+              duration: 0.6,
+              timingFunction: "cubic-bezier(0.20, 1.00, 0.80, 1.00)"
+            }
+          },
           flexItem: {
             marginLeft: 50
           },
           Title: {
             text: {
-              text: this.bindProp('title'),
-              fontFace: 'Bold',
+              text: this.bindProp("title"),
+              fontFace: "Bold",
               textColor: 0xffffffff,
               fontSize: 28
             }
@@ -9082,15 +9092,15 @@ var APP_com_domain_app_diagnalworkshop = (function () {
           Description: {
             y: 80,
             text: {
-              text: this.bindProp('description'),
-              fontFace: 'Regular',
+              text: this.bindProp("description"),
+              fontFace: "Regular",
               textColor: 0xffffffff,
               fontSize: 26,
               maxLines: 2,
               wordWra: true,
               cutEx: 640,
               wordWrapWidth: 640,
-              maxLinesSuffix: '...'
+              maxLinesSuffix: "..."
             }
           }
         }
@@ -9099,12 +9109,16 @@ var APP_com_domain_app_diagnalworkshop = (function () {
 
     // method to set the title of movie/show description from parent component
     set descriptionTitle(title) {
-      this.title = title ? title : 'No title available';
+      this.tag("BackgroundBody").x = -30;
+      this.tag("BackgroundBody").setSmooth("x", this.tag("BackgroundBody").x + 30, {
+        duration: 0.5
+      });
+      this.title = title ? title : "No title available";
     }
 
     // method to set the description of movie/show from parent component
     set descriptionText(des) {
-      this.description = des ? des : 'No Description available';
+      this.description = des ? des : "No Description available";
     }
   }
 
@@ -9112,9 +9126,29 @@ var APP_com_domain_app_diagnalworkshop = (function () {
     static _template() {
       return {
         Container: {
+          transitions: {
+            w: {
+              duration: 0.6,
+              timingFunction: "cubic-bezier(0.20, 1.00, 0.80, 1.00)"
+            },
+            h: {
+              duration: 0.6,
+              timingFunction: "cubic-bezier(0.20, 1.00, 0.80, 1.00)"
+            }
+          },
           Poster: {
             w: 160,
             h: 240,
+            transitions: {
+              w: {
+                duration: 0.6,
+                timingFunction: "cubic-bezier(0.20, 1.00, 0.80, 1.00)"
+              },
+              h: {
+                duration: 0.6,
+                timingFunction: "cubic-bezier(0.20, 1.00, 0.80, 1.00)"
+              }
+            },
             shader: {
               type: Lightning$1.shaders.RoundedRectangle,
               radius: 5
@@ -9128,9 +9162,9 @@ var APP_com_domain_app_diagnalworkshop = (function () {
         Title: {
           y: 260,
           text: {
-            text: this.bindProp('posterTitle'),
+            text: this.bindProp("posterTitle"),
             fontSize: 15,
-            fontFace: 'Regular',
+            fontFace: "Regular",
             cutEx: 150
           }
         }
@@ -9138,14 +9172,14 @@ var APP_com_domain_app_diagnalworkshop = (function () {
     }
     set itemData(data) {
       // patching the image from parent component
-      this.tag('Poster').patch({
+      this.tag("Poster").patch({
         src: data.posterImage
       });
 
       // Incase of image failed to load then we are rendring fallback image
-      this.tag('Poster').on('txError', () => {
-        this.tag('Poster').patch({
-          src: Utils.asset('./images/Slices/placeholder_for_missing_posters.png')
+      this.tag("Poster").on("txError", () => {
+        this.tag("Poster").patch({
+          src: Utils.asset("./images/Slices/placeholder_for_missing_posters.png")
         });
       });
       this.posterTitle = data.title;
@@ -9154,29 +9188,29 @@ var APP_com_domain_app_diagnalworkshop = (function () {
 
     // on focus adding the border around the card
     _focus() {
-      this.fireAncestors('$descriptionData', this.data);
-      this.tag('PosterStorke').patch({
+      this.fireAncestors("$descriptionData", this.data);
+      this.tag("PosterStorke").patch({
         smooth: {
           texture: Lightning$1.Tools.getRoundRect(163, 243, 5, 7, 0xff00ff0c, false, 0xff212121 //0xff212121,
           )
         }
       });
 
-      this.tag('Container').patch({
+      this.tag("Container").patch({
         scale: 1.02
       });
     }
 
     // on unfocus removing the border around the card
     _unfocus() {
-      this.tag('PosterStorke').patch({
+      this.tag("PosterStorke").patch({
         smooth: {
           texture: Lightning$1.Tools.getRoundRect(0, 0, 5, 7, 0xff212121, false, 0xff212121 //0xff212121,
           )
         }
       });
 
-      this.tag('Container').patch({
+      this.tag("Container").patch({
         scale: 1
       });
     }
@@ -9564,7 +9598,7 @@ var APP_com_domain_app_diagnalworkshop = (function () {
           type: List,
           smooth: {
             scrollTransition: {
-              duration: 0.4
+              duration: 0.5
             }
           },
           requestThreshold: 3,
