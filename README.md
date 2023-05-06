@@ -1,4 +1,5 @@
 ### Getting started - Diagnal Workshop
+## Check here https://anandpatel0123.github.io/diagnal_workshop/
 
 > Before you follow the steps below, make sure you have the
 [Lightning-CLI](https://rdkcentral.github.io/Lightning-CLI/#/) installed _globally_ only your system
