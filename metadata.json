@@ -1,0 +1,6 @@
+{
+  "name": "diagnal_workshop",
+  "identifier": "com.domain.app.diagnalworkshop",
+  "version": "1.0.0",
+  "icon": "./static/icon.png"
+}
